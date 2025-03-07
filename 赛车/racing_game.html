@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛车小游戏</title>
+    <link rel="stylesheet" href="racing_game.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>赛车小游戏</h1>
+            <div class="game-info">
+                <div class="score-container">得分: <span id="score">0</span></div>
+                <div class="speed-container">速度: <span id="speed">0</span> km/h</div>
+                <div class="level-container">关卡: <span id="level">1</span></div>
+            </div>
+            <div class="high-scores">
+                <h3>最高分</h3>
+                <ol id="high-scores-list"></ol>
+            </div>
+        </div>
+        <div id="game-area">
+            <div id="player-car"></div>
+        </div>
+        <div class="controls">
+            <button id="start-button">开始游戏</button>
+            <button id="restart-button">重新开始</button>
+            <label class="sound-toggle">
+                <input type="checkbox" id="sound-toggle" checked>
+                音效
+            </label>
+        </div>
+        <div class="level-info">
+            <div class="current-mission"></div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+        <div class="instructions">
+            <h2>游戏说明</h2>
+            <p>使用键盘方向键 ← → 控制赛车左右移动</p>
+            <p>完成每关的任务以解锁下一关</p>
+            <p>撞车游戏结束</p>
+        </div>
+    </div>
+    
+    <!-- 音效资源（使用空的base64音频作为默认值） -->
+    <audio id="sound-engine" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADQABISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAAkD+tPMmAAAAAAAAAAAAAAAAAAAA" loop></audio>
+    <audio id="sound-collision" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADQABISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAAkD+tPMmAAAAAAAAAAAAAAAAAAAA"></audio>
+    <audio id="sound-level-up" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADQABISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAAkD+tPMmAAAAAAAAAAAAAAAAAAAA"></audio>
+    <audio id="sound-point" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADQABISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhI//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjU0AAAAAAAAAAAAAAAAJAAAAAAAAAAAAkD+tPMmAAAAAAAAAAAAAAAAAAAA"></audio>
+    
+    <script src="racing_game.js"></script>
+</body>
+</html> 
