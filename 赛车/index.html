@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>赛车游戏</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        #game-area {
+            width: 100%;
+            height: 700px;
+            background: linear-gradient(to bottom,
+                #333 0%,
+                #333 33.33%,
+                #444 33.33%,
+                #444 66.66%,
+                #333 66.66%,
+                #333 100%
+            );
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        #player-car {
+            width: 60px;
+            height: 100px;
+            background: #ff0000;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .obstacle {
+            position: absolute;
+            background: #666;
+            border-radius: 8px;
+        }
+
+        .obstacle.car {
+            width: 60px;
+            height: 100px;
+            background: #808080;
+        }
+
+        .obstacle.truck {
+            width: 70px;
+            height: 120px;
+            background: #4a4a4a;
+        }
+
+        .obstacle.yellow-truck {
+            width: 70px;
+            height: 120px;
+            background: #ffd700;
+        }
+
+        .coin {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ffd700;
+            animation: coinRotate 1s infinite;
+        }
+
+        .coin.silver {
+            background: #c0c0c0;
+        }
+
+        @keyframes coinRotate {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.8); }
+            100% { transform: scale(1); }
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 400px;
+            margin: 10px 0;
+        }
+
+        .lane-divider {
+            position: absolute;
+            width: 8px;
+            height: 100%;
+            background: #fff;
+            opacity: 0.3;
+        }
+
+        .game-score {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 20px;
+            min-width: 100px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .score-value {
+            margin-left: 5px;
+            color: #ffd700;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .game-paused {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .current-mission {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        #high-scores-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        #high-scores-list li {
+            margin: 5px 0;
+        }
+
+        @media (orientation: landscape) {
+            .game-container {
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-stats">
+            <div>分数: <span id="score">0</span></div>
+            <div>速度: <span id="speed">0</span></div>
+            <div>关卡: <span id="level">1</span></div>
+        </div>
+        <div class="current-mission">任务：新手上路 - 获得 100 分</div>
+        <div class="progress-container">
+            <div class="progress"></div>
+        </div>
+        <div id="game-area">
+            <div id="player-car"></div>
+        </div>
+        <div class="controls">
+            <button id="start-button">开始游戏</button>
+            <button id="restart-button">重新开始</button>
+        </div>
+        <div>
+            <h3>最高分</h3>
+            <ul id="high-scores-list"></ul>
+        </div>
+    </div>
+    <script src="racing_game.js"></script>
+</body>
+</html> 

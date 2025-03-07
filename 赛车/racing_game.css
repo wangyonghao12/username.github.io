@@ -1,0 +1,342 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 页面整体布局 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 游戏容器样式 */
+.game-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* 游戏头部区域样式 */
+.game-header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.game-header h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+/* 游戏区域样式 */
+#game-area {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background-color: #444;
+    overflow: hidden;
+}
+
+/* 车道分隔线样式 */
+.lane-divider {
+    position: absolute;
+    width: 8px;
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(white 40px, transparent 40px);
+    background-size: 8px 80px;
+    background-repeat: repeat-y;
+    opacity: 0.7;
+}
+
+/* 玩家车辆样式 */
+#player-car {
+    position: absolute;
+    width: 60px;
+    height: 100px;
+    background-color: #ff4444;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 10px;
+    z-index: 10;
+    transition: left 0.15s steps(1);
+}
+
+/* 移除旧的虚线样式 */
+.road-line {
+    display: none;
+}
+
+/* 控制按钮区域样式 */
+.controls {
+    padding: 15px;
+    text-align: center;
+    background-color: #eee;
+}
+
+/* 按钮基础样式 */
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.high-scores {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.high-scores h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+#high-scores-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+}
+
+.level-info {
+    background-color: #eee;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.current-mission {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+.sound-toggle {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sound-toggle input {
+    margin-right: 5px;
+}
+
+.instructions {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+.instructions h2 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.instructions p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 关卡过渡动画 */
+@keyframes levelUp {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.level-up {
+    animation: levelUp 0.5s ease;
+}
+
+/* 不同类型的障碍物样式 */
+.obstacle {
+    position: absolute;
+    width: 60px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+/* 普通车辆障碍物 */
+.obstacle.car {
+    background-color: #3498db;  /* 蓝色 */
+}
+
+/* 卡车障碍物 */
+.obstacle.truck {
+    width: 70px;
+    height: 130px;  /* 1.3倍标准高度 */
+    background-color: #666;
+}
+
+/* 黄色卡车障碍物 */
+.obstacle.yellow-truck {
+    width: 70px;
+    height: 160px;  /* 1.6倍标准高度 */
+    background-color: #f1c40f;
+}
+
+/* 油渍障碍物 */
+.obstacle.oil {
+    background-color: black;
+    height: 30px;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+/* 游戏结束样式优化 */
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    z-index: 100;
+}
+
+.game-over h2 {
+    color: #ff4444;
+    margin-bottom: 20px;
+}
+
+.game-over .final-score {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.game-over .high-score {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* 游戏内得分显示 */
+.game-score {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 100;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* 得分数值样式 */
+.game-score .score-value {
+    color: #4CAF50;  /* 绿色 */
+    margin-left: 5px;
+}
+
+/* 游戏暂停界面样式 */
+.game-paused {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 24px;
+    z-index: 100;
+    text-align: center;
+}
+
+.game-paused h2 {
+    margin-bottom: 10px;
+}
+
+.game-paused p {
+    font-size: 16px;
+    color: #aaa;
+}
+
+/* 暂停按钮样式 */
+#pause-button {
+    background-color: #666;
+}
+
+#pause-button.paused {
+    background-color: #4CAF50;
+}
+
+/* 金币基础样式 */
+.coin {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #ffd700;  /* 金色 */
+    border-radius: 50%;
+    z-index: 100;
+    animation: coinRotate 1s infinite;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 银币样式 */
+.coin.silver {
+    background-color: #C0C0C0;  /* 银色 */
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+}
+
+/* 金币旋转动画 */
+@keyframes coinRotate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);  /* 放大效果 */
+    }
+    100% {
+        transform: scale(1);
+    }
+} 
